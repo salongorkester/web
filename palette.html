@@ -9,14 +9,26 @@
   <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@2.0.6/css/pico.min.css">
   <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@2.0.6/css/pico.colors.min.css">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <!-- Fonter -->
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 
   <style>
-    /* Fontvalg */
     :root{
-      --pico-font-family: "Spectral", Georgia, serif;
-      --pico-font-family-heading: "Lora", "Spectral", serif;
+      --font-body: "Spectral", Georgia, serif;
+      --font-heading: "Lora", "Spectral", serif;
+
+      --pico-font-family: var(--font-body);
+      --pico-font-family-heading: var(--font-heading);
+    }
+
+    .font-switcher {
+      display: inline-flex; gap: .5rem; align-items: center;
+      border: 1px solid var(--pico-border-color);
+      padding: .5rem .75rem; border-radius: .5rem;
+      background: var(--pico-primary-background);
     }
 
     /* Palett (lys) */
@@ -146,6 +158,18 @@
       bg=<code>sand-50</code> · text=<code>grey-950</code> · muted=<code>grey-700</code> · border=<code>sand-200</code> · primary=<code>amber-600</code> · section-bg=<code>sand-100</code>
     </p>
 
+    <div class="font-switcher" role="group" aria-label="Bytt font">
+      <label for="fontset">Font:</label>
+      <select id="fontset">
+        <option value="spectral-lora">Spectral + Lora</option>
+        <option value="spectral-only">Kun Spectral</option>
+        <option value="lora-only">Kun Lora</option>
+        <option value="source-serif">Source Serif 4</option>
+        <option value="libre-baskerville">Libre Baskerville</option>
+        <option value="system-serif">System serif</option>
+      </select>
+    </div>
+
     <h2>Fargebokser</h2>
     <div class="swatches">
       <div class="swatch"><span class="chip" style="background:var(--clr-bg)"></span><div class="mono">Bakgrunn<br><code>sand-50</code></div></div>
@@ -197,3 +221,84 @@
   </main>
 </body>
 </html>
+
+<script>
+  (function(){
+    const PRESETS = {
+      "spectral-lora": {
+        body: '"Spectral", Georgia, serif',
+        heading: '"Lora","Spectral", serif',
+        hrefs: [
+          'https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap'
+        ]
+      },
+      "source-serif": {
+        body: '"Source Serif 4", Georgia, serif',
+        heading: '"Source Serif 4", Georgia, serif',
+        hrefs: [
+          'https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap'
+        ]
+      },
+      "libre-baskerville": {
+        body: '"Libre Baskerville", Georgia, serif',
+        heading: '"Libre Baskerville", Georgia, serif',
+        hrefs: [
+          'https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap'
+        ]
+      },
+      "spectral-only": {
+        body: '"Spectral", Georgia, serif',
+        heading: '"Spectral", Georgia, serif',
+        hrefs: [
+          'https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap'
+        ]
+      },
+      "lora-only": {
+        body: '"Lora", Georgia, serif',
+        heading: '"Lora", Georgia, serif',
+        hrefs: [
+          'https://fonts.googleapis.com/css2?family=Lora:wght@600;700&display=swap'
+        ]
+      },
+      "system-serif": {
+        body: 'Georgia, "Times New Roman", Times, serif',
+        heading: 'Georgia, "Times New Roman", Times, serif',
+        hrefs: []
+      }
+    };
+
+    const select = document.getElementById('fontset');
+    const params = new URLSearchParams(window.location.search);
+    const chosen = params.get('font') || 'spectral-lora';
+
+    function ensureFontLinks(hrefs){
+      hrefs.forEach(href => {
+        if (!document.querySelector(`link[data-font-href="${href}"]`)) {
+          const link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = href;
+          link.setAttribute('data-font-href', href);
+          document.head.appendChild(link);
+        }
+      });
+    }
+
+    function applyPreset(key){
+      const preset = PRESETS[key] || PRESETS['spectral-lora'];
+      ensureFontLinks(preset.hrefs);
+      const root = document.documentElement;
+      root.style.setProperty('--font-body', preset.body);
+      root.style.setProperty('--font-heading', preset.heading);
+    }
+
+    select.value = chosen;
+    applyPreset(chosen);
+
+    select.addEventListener('change', (e) => {
+      const key = e.target.value;
+      applyPreset(key);
+      params.set('font', key);
+      window.history.replaceState({}, '', `${location.pathname}?${params}`);
+    });
+    })();
+</script>
