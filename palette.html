@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="no" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Palett–preview: Sand + Grey + Amber</title>
+
+  <!-- Pico + Colors -->
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@2.0.6/css/pico.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@2.0.6/css/pico.colors.min.css">
+
+  <!-- Fonter -->
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* Fontvalg */
+    :root{
+      --pico-font-family: "Spectral", Georgia, serif;
+      --pico-font-family-heading: "Lora", "Spectral", serif;
+    }
+
+    /* Palett (lys) */
+    :root:not([data-theme="dark"]), html[data-theme="light"]{
+      --clr-bg:         var(--pico-color-sand-50);
+      --clr-text:       var(--pico-color-grey-950);
+      --clr-muted:      var(--pico-color-grey-700);
+      --clr-border:     var(--pico-color-sand-200);
+      --clr-primary:    var(--pico-color-amber-600);   /* lenke/aksent */
+      --clr-primary-bg: var(--pico-color-sand-100);   /* seksjonsflate */
+
+      --pico-background-color: var(--clr-bg);
+      --pico-color:            var(--clr-text);
+      --pico-muted-color:      var(--clr-muted);
+      --pico-border-color:     var(--clr-border);
+      --pico-primary:          var(--clr-primary);
+      --pico-primary-background: var(--clr-primary-bg);
+    }
+
+    /* Knapp med sterkere kontrast */
+    .btn-primary{
+      background: var(--pico-color-amber-500);
+      color: var(--pico-color-grey-950);
+      border: 1px solid var(--pico-color-amber-600);
+    }
+    .btn-primary:is(:hover,:focus){
+      background: var(--pico-color-amber-600);
+      color: var(--pico-color-sand-50);
+      border-color: var(--pico-color-amber-700);
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* Demo-oppsett */
+    .swatches { display: grid; grid-template-columns: repeat(6, minmax(0,1fr)); gap: .75rem; }
+    .swatch { border: 1px solid var(--pico-border-color); border-radius: .5rem; padding: .75rem; text-align: center; font-size: .9rem; }
+    .chip { display:block; width:100%; height:72px; border-radius:.35rem; margin-bottom:.5rem; }
+    .examples { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1rem; }
+    .ex { border:1px solid var(--pico-border-color); border-radius:.75rem; padding:1rem; }
+    .bg { border-radius:.5rem; padding:0.9rem; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .9em; }
+    .bg-1 { background:var(--clr-bg); color:var(--clr-text); }
+    .bg-2 { background:var(--clr-primary-bg); color:var(--clr-text); }
+
+    /* Lys modus – palett (korrigert til 'grey') */
+    :root:not([data-theme="dark"]), html[data-theme="light"]{
+      --clr-bg:         var(--pico-color-sand-50);
+      --clr-text:       var(--pico-color-grey-950);
+      --clr-muted:      var(--pico-color-grey-700);
+      --clr-border:     var(--pico-color-sand-200);
+      --clr-primary:    var(--pico-color-amber-600);   /* lenker/aksent */
+      --clr-primary-bg: var(--pico-color-sand-100);   /* seksjon/hero */
+
+      --pico-background-color: var(--clr-bg);
+      --pico-color:            var(--clr-text);
+      --pico-muted-color:      var(--clr-muted);
+      --pico-border-color:     var(--clr-border);
+      --pico-primary:          var(--clr-primary);
+      --pico-primary-background: var(--clr-primary-bg);
+    }
+
+    button,
+    input[type="submit"],
+    [role="button"] {
+      font-weight: bold;
+    }
+
+    /* Outline / ghost-knapp (lys) */
+    .btn-outline{
+      background: transparent;
+      color: var(--pico-color-amber-700);
+      border: 1.5px solid var(--pico-color-amber-600);
+      border-radius: var(--pico-border-radius);
+      padding: .6rem 1rem;
+    }
+    .btn-outline:is(:hover,:focus-visible){
+      background: var(--pico-color-sand-100);       /* subtil flate */
+      color: var(--pico-color-amber-800);
+      border-color: var(--pico-color-amber-700);
+      box-shadow: 0 0 0 .2rem color-mix(in oklab, var(--pico-color-amber-600) 25%, transparent);
+    }
+    .btn-outline:active{
+      background: var(--pico-color-sand-150);
+      border-color: var(--pico-color-amber-800);
+    }
+    .btn-outline[disabled]{
+      opacity: .55;
+      pointer-events: none;
+    }
+
+    .bg-1 .btn-outline{
+        background: var(--pico-color-sand-100);
+    }
+
+    .bg-2 .btn-outline{
+        background: var(--pico-color-sand-50);
+    }
+
+    /* Mørk modus – samme idé, litt høyere kontrast */
+    html[data-theme="dark"]{
+      --pico-background-color: var(--pico-color-grey-950);
+      --pico-color:            var(--pico-color-sand-100);
+      --pico-muted-color:      var(--pico-color-sand-300);
+      --pico-border-color:     var(--pico-color-grey-700);
+      --pico-primary:          var(--pico-color-amber-500);
+      --pico-primary-background: var(--pico-color-grey-900);
+    }
+    html[data-theme="dark"] .btn-outline{
+      color: var(--pico-color-amber-300);
+      border-color: var(--pico-color-amber-400);
+    }
+    html[data-theme="dark"] .btn-outline:is(:hover,:focus-visible){
+      background: color-mix(in oklab, var(--pico-color-amber-400) 12%, transparent);
+      color: var(--pico-color-amber-200);
+      border-color: var(--pico-color-amber-400);
+      box-shadow: 0 0 0 .2rem color-mix(in oklab, var(--pico-color-amber-400) 30%, transparent);
+    }
+
+  </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Palett – Sand + Grey + Amber</h1>
+    <p class="mono">
+      bg=<code>sand-50</code> · text=<code>grey-950</code> · muted=<code>grey-700</code> · border=<code>sand-200</code> · primary=<code>amber-600</code> · section-bg=<code>sand-100</code>
+    </p>
+
+    <h2>Fargebokser</h2>
+    <div class="swatches">
+      <div class="swatch"><span class="chip" style="background:var(--clr-bg)"></span><div class="mono">Bakgrunn<br><code>sand-50</code></div></div>
+      <div class="swatch"><span class="chip" style="background:var(--clr-text)"></span><div class="mono">Tekst<br><code>grey-950</code></div></div>
+      <div class="swatch"><span class="chip" style="background:var(--clr-muted)"></span><div class="mono">Muted<br><code>grey-700</code></div></div>
+      <div class="swatch"><span class="chip" style="background:var(--clr-border)"></span><div class="mono">Border<br><code>sand-200</code></div></div>
+      <div class="swatch"><span class="chip" style="background:var(--clr-primary)"></span><div class="mono">Primær (lenker)<br><code>amber-600</code></div></div>
+      <div class="swatch"><span class="chip" style="background:var(--clr-primary-bg)"></span><div class="mono">SeksjonsBG<br><code>sand-100</code></div></div>
+    </div>
+
+    <h2>Eksempler (bakgrunn + tekst)</h2>
+    <div class="examples">
+      <div class="ex">
+        <div class="bg bg-1">
+          <img src="assets/logo.svg" width=200/>
+          <strong>Bakgrunn sand-50 + tekst grey-950</strong><br>
+          <p>
+            Dette er brødtekst. <a href="#">Lenke</a>, <em>fremhevet
+            tekst</em>, <b>fet tekst</b> og <span style="color:
+            var(--clr-muted)">Roligere tekst (muted)</span>.
+          </p>
+          <p>
+            <button class="btn-primary">Primær knapp</button> <button class="btn-outline">Outline-knapp</button>
+          </p>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="bg bg-2">
+          <img src="assets/logo.svg" width=200/>
+          <strong>Bakgrunn sand-100 + tekst grey-950</strong><br>
+          Seksjonsbakgrunn/hero. <button class="btn-primary">Primær knapp</button> <button class="btn-outline">Outline-knapp</button>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="bg" style="background:var(--pico-color-grey-50); color:var(--clr-text); border:1px dashed var(--clr-border)">
+          <img src="assets/logo.svg" width=200/>
+          <strong>Lys bakgrunn (grey-50)</strong><br>
+          Ikke helt hvit, men veldig lys.
+        </div>
+      </div>
+      <div class="ex">
+        <div class="bg" style="background:var(--pico-color-amber-500); color:var(--pico-color-grey-950)">
+          <img src="assets/logo.svg" width=200/>
+          <strong>Flate i amber-500 + mørk tekst</strong><br>
+          Hvis vi trenger veldig mørk bakgrunn.
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
