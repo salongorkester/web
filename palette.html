@@ -267,9 +267,10 @@
       }
     };
 
+    const defaultOption = 'spectral-lora'
     const select = document.getElementById('fontset');
     const params = new URLSearchParams(window.location.search);
-    const chosen = params.get('font') || 'spectral-lora';
+    const chosen = params.get('font') || defaultOption;
 
     function ensureFontLinks(hrefs){
       hrefs.forEach(href => {
@@ -284,7 +285,7 @@
     }
 
     function applyPreset(key){
-      const preset = PRESETS[key] || PRESETS['spectral-lora'];
+      const preset = PRESETS[key] || PRESETS[defaultOption];
       ensureFontLinks(preset.hrefs);
       const root = document.documentElement;
       root.style.setProperty('--font-body', preset.body);
@@ -298,7 +299,7 @@
       const key = e.target.value;
       applyPreset(key);
       params.set('font', key);
-      window.history.replaceState({}, '', `${location.pathname}?${params}`);
+      window.history.replaceState({}, '', location.pathname + ((key != defaultOption) ? `?${params}` : ''));
     });
     })();
 </script>
