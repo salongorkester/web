@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="no" data-theme="light">
+<html lang="no" data-theme="auto">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -24,21 +24,16 @@
       --pico-font-family-heading: var(--font-heading);
     }
 
-    .font-switcher {
-      display: inline-flex; gap: .5rem; align-items: center;
-      border: 1px solid var(--pico-border-color);
-      padding: .5rem .75rem; border-radius: .5rem;
-      background: var(--pico-primary-background);
-    }
-
-    /* Palett (lys) */
     :root:not([data-theme="dark"]), html[data-theme="light"]{
       --clr-bg:         var(--pico-color-sand-50);
       --clr-text:       var(--pico-color-grey-950);
       --clr-muted:      var(--pico-color-grey-700);
       --clr-border:     var(--pico-color-sand-200);
-      --clr-primary:    var(--pico-color-amber-600);   /* lenke/aksent */
-      --clr-primary-bg: var(--pico-color-sand-100);   /* seksjonsflate */
+      --clr-primary:    var(--pico-color-amber-600);
+      --clr-primary-bg: var(--pico-color-sand-100);
+      --clr-bg-1:       var(--pico-color-sand-100);
+      --clr-bg-2:       var(--pico-color-sand-50);
+      --clr-contrast-bg: var(--pico-color-grey-50);
 
       --pico-background-color: var(--clr-bg);
       --pico-color:            var(--clr-text);
@@ -48,13 +43,67 @@
       --pico-primary-background: var(--clr-primary-bg);
     }
 
-    /* Knapp med sterkere kontrast */
-    .btn-primary{
+    html[data-theme="dark"] {
+      --clr-bg:         var(--pico-color-grey-950);
+      --clr-surface:    var(--pico-color-grey-900);
+      --clr-text:       var(--pico-color-sand-100);
+      --clr-muted:      var(--pico-color-sand-300);
+      --clr-border:     var(--pico-color-grey-700);
+      --clr-bg-1:       var(--pico-color-grey-850);
+      --clr-bg-2:       var(--pico-color-grey-950);
+      --clr-contrast-bg: #000000;
+
+      --clr-primary:    var(--pico-color-amber-400);
+      --clr-primary-bg: var(--pico-color-grey-850);
+
+      --pico-background-color: var(--clr-bg);
+      --pico-color:            var(--clr-text);
+      --pico-muted-color:      var(--clr-muted);
+      --pico-border-color:     var(--clr-border);
+      --pico-primary:          var(--clr-primary);
+      --pico-primary-background: var(--clr-primary-bg);
+    }
+
+    .controls {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .controls button {
+        white-space: nowrap;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .font-switcher {
+      display: inline-flex;
+      gap: .5rem;
+      align-items: center;
+      border: 1px solid var(--pico-border-color);
+      padding: .5rem .75rem;
+      border-radius: .5rem;
+      background: var(--pico-primary-background);
+    }
+
+    .font-switcher label {
+      margin: 0;
+    }
+
+    .font-switcher select {
+      display: inline-block;
+      width: auto;
+      min-width: 10ch;
+    }
+
+    .btn-primary {
       background: var(--pico-color-amber-500);
       color: var(--pico-color-grey-950);
       border: 1px solid var(--pico-color-amber-600);
     }
-    .btn-primary:is(:hover,:focus){
+
+    .btn-primary:is(:hover,:focus) {
       background: var(--pico-color-amber-600);
       color: var(--pico-color-sand-50);
       border-color: var(--pico-color-amber-700);
@@ -64,7 +113,6 @@
       text-decoration: none;
     }
 
-    /* Demo-oppsett */
     .swatches { display: grid; grid-template-columns: repeat(6, minmax(0,1fr)); gap: .75rem; }
     .swatch { border: 1px solid var(--pico-border-color); border-radius: .5rem; padding: .75rem; text-align: center; font-size: .9rem; }
     .chip { display:block; width:100%; height:72px; border-radius:.35rem; margin-bottom:.5rem; }
@@ -75,30 +123,12 @@
     .bg-1 { background:var(--clr-bg); color:var(--clr-text); }
     .bg-2 { background:var(--clr-primary-bg); color:var(--clr-text); }
 
-    /* Lys modus – palett (korrigert til 'grey') */
-    :root:not([data-theme="dark"]), html[data-theme="light"]{
-      --clr-bg:         var(--pico-color-sand-50);
-      --clr-text:       var(--pico-color-grey-950);
-      --clr-muted:      var(--pico-color-grey-700);
-      --clr-border:     var(--pico-color-sand-200);
-      --clr-primary:    var(--pico-color-amber-600);   /* lenker/aksent */
-      --clr-primary-bg: var(--pico-color-sand-100);   /* seksjon/hero */
-
-      --pico-background-color: var(--clr-bg);
-      --pico-color:            var(--clr-text);
-      --pico-muted-color:      var(--clr-muted);
-      --pico-border-color:     var(--clr-border);
-      --pico-primary:          var(--clr-primary);
-      --pico-primary-background: var(--clr-primary-bg);
-    }
-
     button,
     input[type="submit"],
     [role="button"] {
       font-weight: bold;
     }
 
-    /* Outline / ghost-knapp (lys) */
     .btn-outline{
       background: transparent;
       color: var(--pico-color-amber-700);
@@ -106,47 +136,41 @@
       border-radius: var(--pico-border-radius);
       padding: .6rem 1rem;
     }
+
     .btn-outline:is(:hover,:focus-visible){
-      background: var(--pico-color-sand-100);       /* subtil flate */
       color: var(--pico-color-amber-800);
       border-color: var(--pico-color-amber-700);
       box-shadow: 0 0 0 .2rem color-mix(in oklab, var(--pico-color-amber-600) 25%, transparent);
     }
+
     .btn-outline:active{
       background: var(--pico-color-sand-150);
       border-color: var(--pico-color-amber-800);
     }
+
     .btn-outline[disabled]{
       opacity: .55;
       pointer-events: none;
     }
 
-    .bg-1 .btn-outline{
-        background: var(--pico-color-sand-100);
-    }
-
-    .bg-2 .btn-outline{
-        background: var(--pico-color-sand-50);
-    }
-
-    /* Mørk modus – samme idé, litt høyere kontrast */
-    html[data-theme="dark"]{
-      --pico-background-color: var(--pico-color-grey-950);
-      --pico-color:            var(--pico-color-sand-100);
-      --pico-muted-color:      var(--pico-color-sand-300);
-      --pico-border-color:     var(--pico-color-grey-700);
-      --pico-primary:          var(--pico-color-amber-500);
-      --pico-primary-background: var(--pico-color-grey-900);
-    }
     html[data-theme="dark"] .btn-outline{
       color: var(--pico-color-amber-300);
       border-color: var(--pico-color-amber-400);
     }
+
     html[data-theme="dark"] .btn-outline:is(:hover,:focus-visible){
       background: color-mix(in oklab, var(--pico-color-amber-400) 12%, transparent);
       color: var(--pico-color-amber-200);
       border-color: var(--pico-color-amber-400);
       box-shadow: 0 0 0 .2rem color-mix(in oklab, var(--pico-color-amber-400) 30%, transparent);
+    }
+
+    .bg-1 .btn-outline{
+      background: var(--clr-bg-1);
+    }
+
+    .bg-2 .btn-outline{
+      background: var(--clr-bg-2);
     }
 
   </style>
@@ -158,16 +182,21 @@
       bg=<code>sand-50</code> · text=<code>grey-950</code> · muted=<code>grey-700</code> · border=<code>sand-200</code> · primary=<code>amber-600</code> · section-bg=<code>sand-100</code>
     </p>
 
-    <div class="font-switcher" role="group" aria-label="Bytt font">
-      <label for="fontset">Font:</label>
-      <select id="fontset">
-        <option value="spectral-lora">Spectral + Lora</option>
-        <option value="spectral-only">Kun Spectral</option>
-        <option value="lora-only">Kun Lora</option>
-        <option value="source-serif">Source Serif 4</option>
-        <option value="libre-baskerville">Libre Baskerville</option>
-        <option value="system-serif">System serif</option>
-      </select>
+    <div class="controls">
+      <span class="font-switcher" role="group" aria-label="Bytt font">
+        <label for="fontset">Font:</label>
+        <select id="fontset">
+          <option value="spectral-lora">Spectral + Lora</option>
+          <option value="spectral-only">Kun Spectral</option>
+          <option value="lora-only">Kun Lora</option>
+          <option value="source-serif">Source Serif 4</option>
+          <option value="libre-baskerville">Libre Baskerville</option>
+          <option value="system-serif">System serif</option>
+        </select>
+      </span>
+      <span>
+        <button id="theme-toggle" aria-label="Bytt tema">Bytt tema 🌓</button>
+      </span>
     </div>
 
     <h2>Fargebokser</h2>
@@ -204,17 +233,17 @@
         </div>
       </div>
       <div class="ex">
-        <div class="bg" style="background:var(--pico-color-grey-50); color:var(--clr-text); border:1px dashed var(--clr-border)">
+        <div class="bg" style="background:var(--clr-contrast-bg); color:var(--clr-text); border:1px dashed var(--clr-border)">
           <img src="assets/logo.svg" width=200/>
-          <strong>Lys bakgrunn (grey-50)</strong><br>
-          Ikke helt hvit, men veldig lys.
+          <strong>Kontrastbakgrunn</strong><br>
+          Ikke helt hvit, men lys, eller svart.
         </div>
       </div>
       <div class="ex">
         <div class="bg" style="background:var(--pico-color-amber-500); color:var(--pico-color-grey-950)">
           <img src="assets/logo.svg" width=200/>
           <strong>Flate i amber-500 + mørk tekst</strong><br>
-          Hvis vi trenger veldig mørk bakgrunn.
+          Hvis vi trenger denne.
         </div>
       </div>
     </div>
@@ -267,10 +296,10 @@
       }
     };
 
-    const defaultOption = 'spectral-lora'
+    const defaultFontset = 'spectral-lora'
     const select = document.getElementById('fontset');
     const params = new URLSearchParams(window.location.search);
-    const chosen = params.get('font') || defaultOption;
+    const chosen = params.get('font') || defaultFontset;
 
     function ensureFontLinks(hrefs){
       hrefs.forEach(href => {
@@ -285,7 +314,7 @@
     }
 
     function applyPreset(key){
-      const preset = PRESETS[key] || PRESETS[defaultOption];
+      const preset = PRESETS[key] || PRESETS[defaultFontset];
       ensureFontLinks(preset.hrefs);
       const root = document.documentElement;
       root.style.setProperty('--font-body', preset.body);
@@ -295,11 +324,38 @@
     select.value = chosen;
     applyPreset(chosen);
 
+    function updateHistory(args) {
+      const params = new URLSearchParams(window.location.search);
+      const fontset = args.fontset || params.get('font') || defaultFontset;
+      const theme = args.theme || params.get('theme');
+      params.set('theme', theme);
+      params.set('font', fontset);
+      window.history.replaceState({}, '', `${location.pathname}?${params}`);
+    }
+
     select.addEventListener('change', (e) => {
       const key = e.target.value;
       applyPreset(key);
-      params.set('font', key);
-      window.history.replaceState({}, '', location.pathname + ((key != defaultOption) ? `?${params}` : ''));
+      updateHistory({fontset: key});
     });
+
+    function getTheme() {
+      const params = new URLSearchParams(window.location.search);
+      let theme = params.get('theme');
+      if (theme !== 'light' && theme !== 'dark') {
+        theme = window.matchMedia('(prefers-color-scheme: dark)').matches
+          ? 'dark' : 'light';
+      }
+      return theme;
+    }
+
+    document.documentElement.dataset.theme = getTheme();
+
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+      const root = document.documentElement;
+      root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+      updateHistory({theme: root.dataset.theme});
+    });
+
     })();
 </script>
