@@ -1,0 +1,186 @@
+:root {
+  --font-body: "Spectral", Georgia, serif;
+  --font-heading: "Lora", "Spectral", serif;
+
+  --pico-font-family: var(--font-body);
+  --pico-font-family-heading: var(--font-heading);
+}
+
+:root:not([data-theme="dark"]), html[data-theme="light"] {
+  --clr-bg:         var(--pico-color-sand-50);
+  --clr-text:       var(--pico-color-grey-950);
+  --clr-muted:      var(--pico-color-grey-700);
+  --clr-border:     var(--pico-color-sand-200);
+  --clr-primary:    var(--pico-color-amber-600);
+  --clr-primary-bg: var(--pico-color-sand-100);
+  --clr-bg-1:       var(--pico-color-sand-100);
+  --clr-bg-2:       var(--pico-color-sand-50);
+  --clr-contrast-bg: var(--pico-color-grey-50);
+
+  --pico-background-color: var(--clr-bg);
+  --pico-color:            var(--clr-text);
+  --pico-muted-color:      var(--clr-muted);
+  --pico-border-color:     var(--clr-border);
+  --pico-primary:          var(--clr-primary);
+  --pico-primary-background: var(--clr-primary-bg);
+}
+
+html[data-theme="dark"] {
+  --clr-bg:         var(--pico-color-grey-950);
+  --clr-surface:    var(--pico-color-grey-900);
+  --clr-text:       var(--pico-color-sand-100);
+  --clr-muted:      var(--pico-color-sand-300);
+  --clr-border:     var(--pico-color-grey-700);
+  --clr-bg-1:       var(--pico-color-grey-850);
+  --clr-bg-2:       var(--pico-color-grey-950);
+  --clr-contrast-bg: #000000;
+
+  --clr-primary:    var(--pico-color-amber-400);
+  --clr-primary-bg: var(--pico-color-grey-850);
+
+  --pico-background-color: var(--clr-bg);
+  --pico-color:            var(--clr-text);
+  --pico-muted-color:      var(--clr-muted);
+  --pico-border-color:     var(--clr-border);
+  --pico-primary:          var(--clr-primary);
+  --pico-primary-background: var(--clr-primary-bg);
+}
+
+.btn-primary {
+  background: var(--pico-color-amber-500);
+  color: var(--pico-color-grey-950);
+  border: 1px solid var(--pico-color-amber-600);
+}
+
+.btn-primary:is(:hover,:focus) {
+  background: var(--pico-color-amber-600);
+  color: var(--pico-color-sand-50);
+  border-color: var(--pico-color-amber-700);
+}
+
+a {
+  text-decoration: none;
+}
+
+.bg {
+  border-radius: 0.5rem;
+  padding: 0.9rem;
+}
+
+.bg-1 {
+  background: var(--clr-bg);
+  color: var(--clr-text);
+}
+
+.bg-2 {
+  background: var(--clr-primary-bg);
+  color: var(--clr-text);
+}
+
+button,
+input[type="submit"],
+[role="button"] {
+  font-weight: bold;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--pico-color-amber-700);
+  border: 1.5px solid var(--pico-color-amber-600);
+  border-radius: var(--pico-border-radius);
+  padding: .6rem 1rem;
+}
+
+.btn-outline:is(:hover,:focus-visible) {
+  color: var(--pico-color-amber-800);
+  border-color: var(--pico-color-amber-700);
+  box-shadow: 0 0 0 .2rem color-mix(in oklab, var(--pico-color-amber-600) 25%, transparent);
+}
+
+.btn-outline:active {
+  background: var(--pico-color-sand-150);
+  border-color: var(--pico-color-amber-800);
+}
+
+.btn-outline[disabled] {
+  opacity: .55;
+  pointer-events: none;
+}
+
+html[data-theme="dark"] .btn-outline {
+  color: var(--pico-color-amber-300);
+  border-color: var(--pico-color-amber-400);
+}
+
+html[data-theme="dark"] .btn-outline:is(:hover,:focus-visible) {
+  background: color-mix(in oklab, var(--pico-color-amber-400) 12%, transparent);
+  color: var(--pico-color-amber-200);
+  border-color: var(--pico-color-amber-400);
+  box-shadow: 0 0 0 .2rem color-mix(in oklab, var(--pico-color-amber-400) 30%, transparent);
+}
+
+.bg-1 .btn-outline {
+  background: var(--clr-bg-1);
+}
+
+.bg-2 .btn-outline {
+  background: var(--clr-bg-2);
+}
+
+.elements {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 1rem;
+}
+
+.element {
+  border: 1px solid var(--pico-border-color);
+  border-radius: 0.75rem;
+  padding: 1rem;
+}
+
+.site-footer {
+  margin-top: 3rem;
+  font-size: 0.95rem;
+}
+
+.hero {
+  padding: 3rem 0 2rem;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  align-items: center;
+  gap: 2rem;
+}
+
+.brand-logo {
+  max-width: 360px;
+  height: auto;
+  display: block;
+}
+
+@media (min-width: 600px) {
+  .brand-logo {
+    max-width: 500px;
+  }
+}
+
+.tagline p {
+  margin-top: 0;
+  color: var(--pico-muted-color);
+}
+
+img.some {
+  max-width: 32px;
+  height: auto;
+  display: inline-block;
+}
+
+body.centered-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}

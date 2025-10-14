@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="no" data-theme="auto">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bærum Salongorkester</title>
+  <meta name="description" content="Offisiell side for Bærum Salongorkester.">
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@2.0.6/css/pico.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@2.0.6/css/pico.colors.min.css">
+  <link rel="stylesheet" href="main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+</head>
+<body class="bg bg-1 centered-page">
+  <div class="hero">
+    <div>
+      <img class="brand-logo" src="assets/logo.svg" alt="Bærum Salongorkester">
+    </div>
+    <div style="padding-top: 50px; padding-bottom: 20vh; grid-template-columns: 2fr 1fr;" class="grid">
+      <div style="display: inline-block; padding-right: 30px; vertical-align: middle;">
+        © <span id="y"></span> Bærum Salongorkester
+      </div>
+      <div style="display: inline-block; vertical-align: middle; margin-left: auto;">
+        <a href="https://www.facebook.com/baerumsalongorkester" target="_blank" rel="noopener"><img class="some" src="assets/facebook.svg" /></a>
+      </div>
+    </div>
+  </div>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>
