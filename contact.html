@@ -15,11 +15,11 @@
     <div class="site-header">
       <nav>
         <div class="nav">
-          <a href="/" aria-current='page'>
+          <a href="/">
             <img class="brand-logo" src="/assets/logo.svg" alt="Bærum Salongorkester">
           </a>
           <ul>
-            <li><a href="about.html">Om oss</a></li>
+            <li><a href="about.html" aria-current="page">Om oss</a></li>
             <li><a href="contact.html">Kontakt</a></li>
           </ul>
         </div>
@@ -28,7 +28,44 @@
   </header>
   <main>
     <div class="centered">
-      <img class="main-image" src="assets/nikolaikirken.jpg" alt="Konsert i Nikolaikirken" />
+      <img class="main-image" src="assets/fiolin_noter.jpg" alt="Fiolin og noter" />
+    </div>
+    <div class="centered">
+      <p>
+        Kontakt oss gjerne via skjemaet om du lurer på noe, om du kunne tenke
+        deg å spille med oss, for bookingforespørsler eller andre henvendelser.
+      </p>
+    </div>
+    <div class="centered">
+      <form>
+        <fieldset>
+          <label>
+            Navn:
+            <input type="text" name="navn" />
+          </label>
+        </fieldset>
+        <fieldset>
+          <label>
+            E-post:
+            <input type="email" name="epost" />
+          </label>
+        </fieldset>
+        <fieldset>
+          <label>
+            Overskrift:
+            <input type="text" name="emne" />
+          </label>
+        </fieldset>
+        <fieldset>
+          <label>
+            Melding:
+            <textarea name="melding" rows="6"></textarea>
+          </label>
+        </fieldset>
+        <fieldset>
+          <input class="btn-outline" type="submit" value="Send inn" />
+        </fieldset>
+      </form>
     </div>
   </main>
   <footer>
