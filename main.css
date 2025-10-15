@@ -161,12 +161,6 @@ html[data-theme="dark"] .btn-outline:is(:hover,:focus-visible) {
   display: block;
 }
 
-@media (min-width: 600px) {
-  .brand-logo {
-    max-width: 500px;
-  }
-}
-
 .tagline p {
   margin-top: 0;
   color: var(--pico-muted-color);
@@ -183,4 +177,38 @@ body.centered-page {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+}
+
+.footerbar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: .75rem;
+  padding: 50px 0 20vh;
+}
+
+.copyright {
+  margin: 0;
+  line-height: 1.2;
+}
+
+.social img {
+  width: 32px;
+  height: 32px;
+  display: block;
+}
+
+@media (max-width: 640px) {
+  .footerbar {
+    gap: .5rem;
+  }
+  .social {
+    transform: translateY(2px);
+  }
+}
+
+@media (min-width: 640px) {
+  .brand-logo {
+    max-width: 500px;
+  }
 }
