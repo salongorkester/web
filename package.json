@@ -1,0 +1,25 @@
+{
+  "name": "salongorkester.no",
+  "version": "1.0.0",
+  "description": "Web site for Bærum Salongorkester",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx eleventy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/salongorkester/web-staging.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/salongorkester/web/issues"
+  },
+  "homepage": "https://github.com/salongorkester/web#README.md",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.2"
+  }
+}
