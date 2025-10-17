@@ -11,12 +11,15 @@
     <link rel="stylesheet" href="/main.css">
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
   </head>
-  <body class="bg {{ background_class or "bg-2" }}">
-    {% include "partials/header.njk" %}
+  <body class="bg {{ bgclass | default('bg-1') }}">
+    <header>
+      {% include "partials/header.njk" %}
+    </header>
     <main>
       {{ content | safe }}
     </main>
-    {% include "partials/footer.njk" %}
-    <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+    <footer>
+      {% include "partials/footer.njk" %}
+    </footer>
   </body>
 </html>
