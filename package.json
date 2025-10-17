@@ -21,6 +21,7 @@
   "homepage": "https://github.com/salongorkester/web#README.md",
   "devDependencies": {
     "@11ty/eleventy": "^3.1.2",
+    "@quasibit/eleventy-plugin-sitemap": "^2.2.0",
     "luxon": "^3.7.2"
   }
 }
