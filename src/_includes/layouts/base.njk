@@ -3,13 +3,20 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Bærum Salongorkester</title>
-    <meta name="description" content="Offisiell side for Bærum Salongorkester.">
+    <title>{{ title or "Bærum Salongorkester – Salongmusikk til bryllup og event" }}</title>
+    <meta name="description" content="{{ description or 'Levende salongmusikk fra strykere, blåsere, klaver og perkusjon.' }}">
+    <link rel="canonical" href="https://salongorkester.no{{ page.url }}">
+    {% if env != "prod" %}
+      <meta name="robots" content="noindex, nofollow">
+    {% endif %}
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="apple-touch-icon" href="/assets/icon-180.png">
     <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@2.0.6/css/pico.min.css">
     <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@2.0.6/css/pico.colors.min.css">
     <link rel="stylesheet" href="/main.css">
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    {% include "partials/og.njk" %}
   </head>
   <body class="bg {{ bgclass | default('bg-1') }}">
     <header>

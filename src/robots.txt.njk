@@ -1,0 +1,13 @@
+---
+layout: false
+permalink: robots.txt
+eleventyExcludeFromCollections: true
+---
+User-agent: *
+{% if env == "prod" -%}
+Disallow:
+
+Sitemap: https://salongorkester.no/sitemap.xml
+{% else -%}
+Disallow: /
+{% endif -%}
