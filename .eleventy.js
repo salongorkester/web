@@ -12,7 +12,7 @@ export default function(eleventyConfig) {
       .toFormat(fmt);
   });
 
-  const baseUrl = process.env.BUILD_ENV === "prod"
+  const baseUrl = process.env.BUILD_ENV === "production"
         ? "https://salongorkester.no"
         : "https://staging.salongorkester.no";
 

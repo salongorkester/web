@@ -17,6 +17,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      BUILD_ENV: ${{ vars.BUILD_ENV }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
