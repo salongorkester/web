@@ -260,3 +260,26 @@ body.centered {
     width: 90vw;
   }
 }
+
+.event {
+  border: 1px solid var(--pico-border-color);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+.event-details {
+  display: flex;
+  justify-content: space-between;
+  gap: .75rem;
+  margin: 0.4rem 0;
+}
+
+div.event-details:first-of-type {
+  margin-top: 1.5rem;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}

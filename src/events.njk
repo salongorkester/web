@@ -1,0 +1,52 @@
+---
+layout: base.njk
+bgclass: bg-2
+title: Bærum Salongorkester – Events
+description: Konserter og andre events med Bærum Salongorkester
+---
+<div class="centered">
+  <h1>Eventer og konserter</h1>
+  {% for event in events %}
+    <div class="event">
+      <h3>
+        {{ event.title }}
+      </h3>
+      <p>
+        {{ event.body | safe }}
+      </p>
+      <div class="event-details">
+        <div>
+          Dørene åpner
+        </div>
+        <div>
+          {{ event.start }}
+        </div>
+      </div>
+      <div class="event-details">
+        <div>
+          Slutt
+        </div>
+        <div>
+          {{ event.end }}
+        </div>
+      </div>
+      <div class="event-details">
+        <div>
+          Billetter
+        </div>
+        <div>
+          <a href="{{ event.tickets }}">{{ event.tickets }}</a>
+        </div>
+      </div>
+      <div class="event-details">
+        <div>
+          Sted
+        </div>
+        <div>
+          {{ event.place }}
+          <a href="{{ event.map }}"><img class="icon" src="/assets/location.svg" /></a>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>

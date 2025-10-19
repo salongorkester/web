@@ -22,6 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       BUILD_ENV: ${{ vars.BUILD_ENV }}
+      SHEET_CSV_URL: ${{ vars.SHEET_CSV_URL }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
