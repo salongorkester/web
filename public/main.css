@@ -246,21 +246,6 @@ body.centered {
   max-height: 800px;
 }
 
-@media (max-width: 640px) {
-  .main-image {
-    max-width: 90vw;
-    max-height: 90vh;
-  }
-
-  .centered p {
-    width: 90vw;
-  }
-
-  .footerbar {
-    width: 90vw;
-  }
-}
-
 div.event {
   border: 1px solid var(--pico-border-color);
   border-radius: 0.75rem;
@@ -295,10 +280,30 @@ div.event > div {
   margin: 0.4rem 0;
 }
 
-.event-details > div:first-of-type {
-}
-
 .icon {
   width: 24px;
   height: 24px;
+}
+
+@media (max-width: 640px) {
+  .main-image {
+    max-width: 90vw;
+    max-height: 90vh;
+  }
+
+  .centered p {
+    width: 90vw;
+  }
+
+  .footerbar {
+    width: 90vw;
+  }
+
+  div.event {
+    width: 90vw;
+  }
+
+  .event-body p {
+    width: 100%;
+  }
 }
