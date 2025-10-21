@@ -8,45 +8,63 @@ description: Konserter og andre events med Bærum Salongorkester
   <h1>Eventer og konserter</h1>
   {% for event in events %}
     <div class="event">
-      <h3>
-        {{ event.title }}
-      </h3>
-      <p>
+      <div class="event-title">
+        <h3>
+          {{ event.title }}
+        </h3>
+      </div>
+      <div class="event-body">
         {{ event.body | safe }}
-      </p>
-      <div class="event-details">
-        <div>
-          Dørene åpner
-        </div>
-        <div>
-          {{ event.start }}
-        </div>
       </div>
       <div class="event-details">
+        {% if event.start %}
         <div>
-          Slutt
+          <div>
+            Dørene åpner
+          </div>
+          <div>
+            {{ event.start }}
+          </div>
         </div>
-        <div>
-          {{ event.end }}
-        </div>
-      </div>
-      <div class="event-details">
-        <div>
-          Billetter
-        </div>
-        <div>
-          <a href="{{ event.tickets }}">{{ event.tickets }}</a>
-        </div>
-      </div>
-      <div class="event-details">
-        <div>
-          Sted
-        </div>
-        <div>
-          {{ event.place }}
-          <a href="{{ event.map }}"><img class="icon" src="/assets/location.svg" /></a>
-        </div>
+        {% endif %}
+        {% if event.end %}
+          <div>
+          <div>
+            Slutt
+          </div>
+          <div>
+            {{ event.end }}
+          </div>
+          </div>
+        {% endif %}
+        {% if event.tickets %}
+          <div>
+          <div>
+            Billetter
+          </div>
+          <div>
+            <a href="{{ event.tickets }}">{{ event.tickets }}</a>
+          </div>
+          </div>
+        {% endif %}
+        {% if event.map or event.place %}
+          <div>
+          <div>
+            Sted
+          </div>
+          <div>
+            {{ event.place }}
+            {% if event.map %}
+              <a href="{{ event.map }}"><img class="icon" src="/assets/location.svg" /></a>
+            {% endif %}
+          </div>
+          </div>
+        {% endif %}
       </div>
     </div>
   {% endfor %}
+  <script type="text/javascript" src="/text.js"></script>
+  <script type="text/javascript">
+   adjustTitles("event-title", "--pico-font-size");
+  </script>
 </div>

@@ -1,24 +1,35 @@
-import EleventyFetch from "@11ty/eleventy-fetch";
+import Fetch from "@11ty/eleventy-fetch";
 import { parse } from "csv-parse/sync";
 import { DateTime } from "luxon";
 import markdownIt from "markdown-it";
 
 const CSV_URL = process.env.SHEET_CSV_URL
 const zone = "Europe/Oslo";
+const expectedDateFormats = [
+  "yyyy-MM-dd HH:mm",
+  "MM/dd/yyyy HH:mm",
+  "yyyy-MM-dd",
+  "MM/dd/yyyy"
+];
 
 function parseDate(s) {
   s = (s || "").trim();
-  let d = DateTime.fromFormat(s, "yyyy-MM-dd HH:mm", { zone: zone });
-  if (!d.isValid) {
-    d = DateTime.fromFormat(s, "yyyy-MM-dd", { zone: zone });
+  let d = null, i = 0;
+  for (; i < expectedDateFormats.length; i++) {
+    d = DateTime.fromFormat(s, expectedDateFormats[i], { zone: zone });
+    if (d.isValid) {
+      break;
+    }
   }
-  return d.isValid ? d.setLocale("nb").toFormat("EEEE dd.MM.yyyy HH:mm") : null;
+  return d.isValid ? d.setLocale("nb") : null;
 }
 
 export default async function() {
-  const csv = await EleventyFetch(CSV_URL, {
-    duration: "30s",
-    type: "text"
+  const now = DateTime.now().setZone(zone);
+  const csv = await Fetch(`${CSV_URL}&nocache=${now.toMillis()}`, {
+    duration: "0s",
+    type: "text",
+    verbose: true
   });
 
   const rows = parse(csv, {
@@ -29,21 +40,25 @@ export default async function() {
 
   const [header, ...dataRows] = rows;
 
-  const now = DateTime.now().setZone(zone);
   const md = markdownIt();
 
   return dataRows.map(r => {
     if (r[5] !== "TRUE") {
       return null
     }
+    const start = parseDate(r[0]);
+    const end = parseDate(r[1]);
     return {
-      start: parseDate(r[0]),
-      end: parseDate(r[1]),
+      date: start,
+      start: start ? start.toFormat("EEEE dd.MM.yyyy HH:mm") : null,
+      end: end ? end.toFormat("EEEE dd.MM.yyyy HH:mm") : null,
       tickets: r[2]?.trim(),
       place: r[3].trim(),
       map: r[4]?.trim(),
       title: r[6]?.trim(),
       body: md.render(r[7]?.trim()),
     }
-  }).filter(r => r);
+  }).filter(r => r && r.date > now).toSorted(
+    (l, r) => l.date == r.date ? 0 : (l.date > r.date ? 1 : -1)
+  );
 }
