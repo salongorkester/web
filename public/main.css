@@ -261,22 +261,41 @@ body.centered {
   }
 }
 
-.event {
+div.event {
   border: 1px solid var(--pico-border-color);
   border-radius: 0.75rem;
   padding: 1rem;
   margin: 1rem 0;
+  width: 740px;
+}
+
+div.event > div {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.event-title {
+  margin-top: 0.5rem;
+}
+
+.event-body p {
+  width: 100%;
 }
 
 .event-details {
+  background: var(--clr-bg-2);
+  border-radius: var(--pico-border-radius);
+  border: 1px solid var(--pico-border-color);
+}
+
+.event-details > div {
   display: flex;
   justify-content: space-between;
   gap: .75rem;
   margin: 0.4rem 0;
 }
 
-div.event-details:first-of-type {
-  margin-top: 1.5rem;
+.event-details > div:first-of-type {
 }
 
 .icon {
